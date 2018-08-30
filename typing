@@ -1,0 +1,29 @@
+import random
+import time
+
+question = ["void", "class", "public", "static", "int", "float","string", "for", "while", "if",
+            "()", "const","transform", "position", "quaternion", "euler", "rotate", "scale", "rigidbody", "boxcollider",
+            "sirclecollider", "audiosource", "tag", "update", "start", "fixedupdate"]
+num = 0
+count = 0
+
+def typing_question(i):
+    print("question" + str(i + 1) + ": " + str(question[num]))
+    hoge = input()
+    if hoge == question[num]:
+        global count
+        count = count + len(question[num])
+        return question.pop(num)
+    else:
+        return typing_question(i)
+
+print("press enter")
+hoge = input()
+t1 = time.time()
+for i in range(10):
+    num = random.randint(0, len(question) - 1)
+    typing_question(i)
+
+t2 = time.time()
+
+print("score: " + str(int(count / (t2 - t1) * 100)))
